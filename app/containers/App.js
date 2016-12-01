@@ -3,13 +3,28 @@ import '../assets/stylesheets/application.scss';
 
 class App extends Component {
   render() {
+    let input1, input2;
     return (
       <div className='container center-text'>
-        <div className='app-header'>
-          <h1>React-Webpack Boilerplate</h1>
-          <p className='app-text'>Basic set-up for running React with Webpack.</p>
-          <p className='app-text'>Dev server and production build available.</p>
-        </div>
+        <input
+          ref={
+            ( node1 ) => {
+              input1 = node1
+            }
+          }
+          type="text"
+          placeholder="Input 1" />
+
+        <input
+          ref={
+            ( node2 ) => {
+              input2 = node2
+            }
+          }
+          type="text"
+          placeholder="Input 2" />
+
+        <button>Submit</button>
       </div>
     )
   }
