@@ -15,12 +15,12 @@ describe ( 'App container', () => {
     expect( app ).to.exist;
   });
 
-  it ( 'renders 2 input nodes', () => {
-    expect( app.find( 'input' ) ).to.have.length( 2 );
+  it ( 'renders a `h1` node', () => {
+    expect( app.find( 'h1' ) ).to.exist;
   });
 
-  it ( 'renders 1 button node', () => {
-    expect( app.find( 'button' ) ).to.have.length( 1 );
+  it ( 'renders a `p` node', () => {
+    expect( app.find( 'p' ) ).to.exist;
   });
 
 });
