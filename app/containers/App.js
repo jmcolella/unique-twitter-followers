@@ -3,28 +3,12 @@ import '../assets/stylesheets/application.scss';
 
 class App extends Component {
   render() {
-    let input1, input2;
     return (
       <div className='container center-text'>
-        <input
-          ref={
-            ( node1 ) => {
-              input1 = node1
-            }
-          }
-          type="text"
-          placeholder="Input 1" />
+        <h1>Unique Twitter Followers</h1>
+        <p>Enter 2 Twitter handles to see a list of uncommon users they are following</p>
 
-        <input
-          ref={
-            ( node2 ) => {
-              input2 = node2
-            }
-          }
-          type="text"
-          placeholder="Input 2" />
-
-        <button>Submit</button>
+        { this.props.children }
       </div>
     )
   }
