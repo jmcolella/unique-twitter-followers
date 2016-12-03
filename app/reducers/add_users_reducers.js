@@ -9,8 +9,8 @@ const screenNames = ( state = initialState, action ) => {
   switch ( action.type ) {
     case Constants.ADD_SCREEN_NAMES:
       return Object.assign( {}, state, {
-        user1ScreenName: action.user1ScreenName,
-        user2ScreenName: action.user2ScreenName
+        user1: action.user1ScreenName,
+        user2: action.user2ScreenName
       });
     default:
       return state
