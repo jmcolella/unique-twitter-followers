@@ -1,34 +1,25 @@
 import * as Constants from '../constants/following_constants';
+import followingHelpers from '../utils/following_helpers';
 
-function followingHelper ( state = {
-  isFetching: false,
-  following: []
-}, action ) {
+
+export const following = ( state = {
+  user1Compare: [],
+  user2Compare: []
+}, action ) => {
   switch ( action.type ) {
     case Constants.REQUEST_FOLLOWING:
       return Object.assign( {}, state, {
-        isFetching: true
+        [action.user]: followingHelpers.fetching( state[action.user], action )
       });
     case Constants.RECEIVE_FOLLOWING:
       return Object.assign( {}, state, {
-        isFetching: false,
-        following: action.followingList
-      });
-    default:
-      return state
-  }
-}
-
-export const following = ( state = {}, action ) => {
-  switch ( action.type ) {
-    case Constants.REQUEST_FOLLOWING:
-      return Object.assign( {}, state, {
-        [action.user]: followingHelper( state[action.user], action )
-      });
-    case Constants.RECEIVE_FOLLOWING:
-      return Object.assign( {}, state, {
-        [action.user]: followingHelper( state[action.user], action )
+        [action.user]: followingHelpers.fetching( state[action.user], action )
       })
+    case Constants.COMPARE_FOLLOWING:
+      return Object.assign( {}, state, {
+        user1Compare: followingHelpers.compare( action.user1, action.user2 ),
+        user2Compare: followingHelpers.compare( action.user2, action.user1 )
+      });
     default:
       return state
   }
