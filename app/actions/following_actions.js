@@ -16,6 +16,14 @@ function receiveFollowing ( user, json ) {
   }
 };
 
+export function compareFollowing( user1, user2 ) {
+  return {
+    type: Constants.COMPARE_FOLLOWING,
+    user1,
+    user2
+  }
+}
+
 export function fetchFollowing ( users ) {
   return dispatch => {
     users.map( u => {
