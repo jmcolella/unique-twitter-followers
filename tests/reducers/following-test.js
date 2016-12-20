@@ -4,7 +4,7 @@ import * as Constants from '../../app/constants/following_constants';
 import * as Actions from '../../app/actions/following_actions';
 import { following } from '../../app/reducers/following_reducers';
 
-describe ( 'Redux Reducers::Following', () => {
+describe.only ( 'Redux Reducers::Following', () => {
 
   describe ( 'initial state', () => {
     const initialState = {
@@ -56,7 +56,7 @@ describe ( 'Redux Reducers::Following', () => {
   describe ( 'state after async fetch action', () => {
     const users = ['jcolella48', 'sarahjeangilly'];
     const store = configureStore();
-    store.dispatch( Actions.fetchFollowing( users ) )
+    store.dispatch( Actions.fetchFollowing( users ) );
 
     describe ( 'user1 object', () => {
       it ( 'returns user1 object with property name `jcolella48`', () => {
