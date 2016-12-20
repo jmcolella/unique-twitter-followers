@@ -30,18 +30,14 @@ export function fetchFollowing ( users ) {
       dispatch( requestFollowing( u ) );
       return fetch( `http://localhost:3000/search?screen_name=${u}` )
         .then( (response, data) => {
-          if ( response.ok ) {
-            response.json()
-            .then( json => {
-              dispatch( receiveFollowing( u, json ) )
-            });
-          } else {
-            // NEED TO HANDLE TWITTER TIMEOUTS
-          }
+          response.json()
+          .then( json => {
+            dispatch( receiveFollowing( u, json ) )
+          })
+        .catch( ( error ) => {
+          debugger;
+        });
       })
-      .catch( ( error ) => {
-        debugger;
-      });
     });
   }
 }
