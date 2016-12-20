@@ -1,14 +1,14 @@
 import fetch from 'isomorphic-fetch';
 import * as Constants from '../constants/following_constants';
 
-function requestFollowing ( user ) {
+export function requestFollowing ( user ) {
   return {
     type: Constants.REQUEST_FOLLOWING,
     user
   }
 };
 
-function receiveFollowing ( user, json ) {
+export function receiveFollowing ( user, json ) {
   return {
     type: Constants.RECEIVE_FOLLOWING,
     followingList: json.array,
@@ -30,10 +30,17 @@ export function fetchFollowing ( users ) {
       dispatch( requestFollowing( u ) );
       return fetch( `http://localhost:3000/search?screen_name=${u}` )
         .then( (response, data) => {
-          response.json()
-          .then( json => {
-            dispatch( receiveFollowing( u, json ) )
-          })
+          if ( response.ok ) {
+            response.json()
+            .then( json => {
+              dispatch( receiveFollowing( u, json ) )
+            });
+          } else {
+            // NEED TO HANDLE TWITTER TIMEOUTS
+          }
+      })
+      .catch( ( error ) => {
+        debugger;
       });
     });
   }
