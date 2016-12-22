@@ -1,34 +1,107 @@
-$primary-color: #1F5673;
-$secondary-color: #759FBC;
+$primary-color: #1da1f2; // Twitter main blue
+$secondary-color: #1B95E0; // light Twitter blue
+$tertiary-color: #8899a6; // Twitter grey
+$white: #fff;
 $primary-font: 'Helvetica';
 
+/*  GENERAL NODE STYLING */
 body {
   font-family: $primary-font;
 }
+
+h1 {
+  color: $primary-color;
+  letter-spacing: 1px;
+}
+
+p {
+  color: $tertiary-color;
+  letter-spacing: 1px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+  margin: 80px auto;
+  font-size: 16px;
+  color: $tertiary-color;
+  border: 1px solid $secondary-color;
+  letter-spacing: 1px;
+}
+
+button {
+  width: 100%;
+  border: none;
+  background: $primary-color;
+  padding: 20px;
+  font-family: $primary-font;
+  font-size: 20px;
+  color: $white;
+  letter-spacing: 1px;
+  box-shadow: .2em .2em 1.5em #ccc;
+  cursor: pointer;
+  transition: background 0.5s ease;
+
+  &:hover {
+    background: $white;
+    color: $primary-color;
+  }
+}
+
+/* WIDTHS */
+
+.fifty-percent-width {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/*  CONTAINERS */
 
 .container {
   display: block;
   padding: 0px 15px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
+
+.header-container {
+  margin-top: 50px;
+}
+
+.children-container {
+  height: 50vh;
+}
+
+.inputs-container {
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+
+.button-container {
+  display: block;
+  width: 75%;
+  margin: 0 auto;
+}
+
+/* BACKGROUNDS */
+
+.white-bg {
+  background: $white;
+}
+
+/* ALIGNMENT */
 
 .center-text {
   text-align: center;
 }
 
-.app-header {
-  display: block;
-  margin: 50px;
-}
+/*  ICONS */
 
-.app-header h1 {
+.fa-twitter {
   color: $primary-color;
-  font-weight: bold;
-  font-size: 40px;
-}
-
-.app-text {
-  color: $secondary-color;
-  font-size: 20px;
 }

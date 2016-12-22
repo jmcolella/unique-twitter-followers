@@ -25,32 +25,38 @@ class AddScreenNames extends Component {
   render() {
     let input1, input2;
     return (
-      <div>
-        <input
-          ref={
-            ( node1 ) => {
-              input1 = node1
+      <div className='children-container'>
+        <div className='inputs-container'>
+          <input
+            id='user-1-input'
+            ref={
+              ( node1 ) => {
+                input1 = node1
+              }
             }
-          }
-          type="text"
-          placeholder="Input 1" />
+            type="text"
+            placeholder="first handle" />
 
-        <input
-          ref={
-            ( node2 ) => {
-              input2 = node2
+          <input
+            id='user-2-input'
+            ref={
+              ( node2 ) => {
+                input2 = node2
+              }
             }
-          }
-          type="text"
-          placeholder="Input 2" />
+            type="text"
+            placeholder="second handle" />
+        </div>
 
-        <button
-          onClick={
-            () => this._submitScreenNames( input1.value, input2.value )
-          }
-        >
-          Submit
-        </button>
+        <div className='button-container'>
+          <button
+            onClick={
+              () => this._submitScreenNames( input1.value, input2.value )
+            }
+          >
+            COMPARE
+          </button>
+        </div>
       </div>
     )
   }
