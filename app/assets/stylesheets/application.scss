@@ -67,8 +67,45 @@ button {
   position: relative;
 }
 
+.index-container {
+  // background: $primary-color;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  .fa-twitter {
+    color: $white;
+  }
+
+  h1 {
+    color: $white;
+    font-size: 50px;
+    letter-spacing: 4px;
+  }
+
+  p {
+    color: $white;
+    font-size: 20px;
+    margin-bottom: 70px;
+  }
+
+  button {
+    background: $white;
+    color: $primary-color;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: box-shadow 0.5s ease;
+
+    &:hover {
+      box-shadow: .2em .2em 1.5em $white;;
+    }
+  }
+}
+
 .header-container {
-  margin-top: 50px;
+  margin-top: 130px;
 }
 
 .children-container {
@@ -104,4 +141,45 @@ button {
 
 .fa-twitter {
   color: $primary-color;
+}
+
+/* BANNER */
+
+.banner {
+  text-align: left;
+
+  .banner-left {
+    display: inline-block;
+
+    i {
+      display: inline-block;
+    }
+
+    p {
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+
+  .banner-right {
+    display: inline-block;
+    float: right;
+    text-align: right;
+
+    p {
+      display: block;
+      margin-bottom: 0px;
+
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        transition: color 0.5s ease;
+
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
 }
