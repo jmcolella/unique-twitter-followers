@@ -8,7 +8,11 @@ const Index = () => {
       <div className='index-presentation'>
         <i className="fa fa-4x fa-twitter" aria-hidden="true"></i>
         <h1>UNIQTWEET</h1>
-        <p>Two Twitter handles. All unique friends.<br/>Much exploration.</p>
+
+        <div className='index-presentation-subtext'>
+          <p>Two Twitter handles. All unique friends.</p>
+          <p>Much exploration.</p>
+        </div>
 
         <Link to='/handles'>
           <button
