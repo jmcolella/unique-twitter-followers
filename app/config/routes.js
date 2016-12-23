@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import configureStore from '../store/configure_store';
 import App from '../containers/App';
-import Index from '../containers/Index';
+import Index from '../components/Index';
 import AddScreenNames from '../containers/AddScreenNames';
 import FollowingLists from '../containers/FollowingLists';
 
