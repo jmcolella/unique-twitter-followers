@@ -1,1 +1,0 @@
-export const ADD_SCREEN_NAMES = 'ADD_SCREEN_NAMES';
