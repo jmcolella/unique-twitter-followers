@@ -85,10 +85,13 @@ button {
     letter-spacing: 4px;
   }
 
-  p {
-    color: $white;
-    font-size: 20px;
+  .index-presentation-subtext {
     margin-bottom: 70px;
+    
+    p {
+      color: $white;
+      font-size: 20px;
+    }
   }
 
   button {
