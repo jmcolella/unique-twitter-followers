@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { addUsers } from '../actions/add_users_actions';
+import Banner from '../components/Banner';
+import Header from '../components/Header';
 
 class AddScreenNames extends Component {
   constructor() {
@@ -27,21 +29,11 @@ class AddScreenNames extends Component {
     return (
       <div className='container fifty-percent-width fade-in'>
 
-        <div className='banner'>
-          <div className='banner-left'>
-            <i className="fa fa-twitter" aria-hidden="true"></i>
-            <p>UNIQTWEET</p>
-         </div>
+        <Banner />
 
-         <div className='banner-right'>
-           <p>john colella | <a href='https://github.com/jmcolella/unique-twitter-followers'>code</a></p>
-         </div>
-        </div>
-
-        <div className="header-container">
-          <h1>Two Twitter Handles</h1>
-          <p>One click away from some unqiue finds.</p>
-        </div>
+        <Header
+          title={ 'Two Twitter Handles' }
+          subTitle={ 'One click away from some unqiue finds.' } />
 
         <div className='children-container'>
           <div className='inputs-container'>
