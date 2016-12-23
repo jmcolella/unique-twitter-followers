@@ -1,33 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router';
 import '../assets/stylesheets/index.scss';
 
-class Index extends Component {
-  constructor() {
-    super()
+const Index = () => {
+  return (
+    <div className='index-container fade-in'>
+      <div className='index-presentation'>
+        <i className="fa fa-4x fa-twitter" aria-hidden="true"></i>
+        <h1>UNIQTWEET</h1>
+        <p>Two Twitter handles. All unique friends.<br/>Much exploration.</p>
 
-    this._routeHandlesClick = this._routeHandlesClick.bind( this )
-  }
-  _routeHandlesClick() {
-    const { router } = this.context;
-    router.push( '/handles' );
-  }
-  render() {
-    return (
-      <div className='index-container'>
-        <div className='index-presentation'>
-          <i className="fa fa-4x fa-twitter" aria-hidden="true"></i>
-          <h1>UNIQTWEET</h1>
-          <p>Two Twitter handles. All unique friends.<br/>Much exploration.</p>
-
+        <Link to='/handles'>
           <button
-            onClick={ this._routeHandlesClick }
+            type='button'
           >
             GET STARTED
           </button>
-        </div>
+        </Link>
       </div>
-    )
-  }
+    </div>
+  )
 };
 
 Index.contextTypes = {

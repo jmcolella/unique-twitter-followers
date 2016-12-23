@@ -25,7 +25,7 @@ class AddScreenNames extends Component {
   render() {
     let input1, input2;
     return (
-      <div className='container fifty-percent-width'>
+      <div className='container fifty-percent-width fade-in'>
 
         <div className='banner'>
           <div className='banner-left'>
