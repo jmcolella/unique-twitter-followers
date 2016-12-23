@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import screenNames from './add_users_reducers';
+import handles from './add_handles_reducers';
 import { following } from './following_reducers';
 
 export const twitterFollowersApp = combineReducers({
-  screenNames,
+  handles,
   following
 });

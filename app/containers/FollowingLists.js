@@ -6,9 +6,9 @@ import Friend from '../components/Friend';
 class FollowingLists extends Component {
   componentDidMount() {
     const { store, dispatch } = this.context;
-    const state = store.getState();
+    const handles = store.getState().handles;
 
-    store.dispatch( fetchFollowing( state.screenNames.users ) );
+    store.dispatch( fetchFollowing( [ handles.handle1, handles.handle2 ] ) );
 
     this.unsubscribe = store.subscribe( () => {
       this.forceUpdate;
@@ -16,8 +16,8 @@ class FollowingLists extends Component {
   }
   componentWillReceiveProps( nextProps ) {
     const { store } = this.context;
-    let user1 = nextProps.following[nextProps.screenNames.users[0]];
-    let user2 = nextProps.following[nextProps.screenNames.users[1]];
+    let user1 = nextProps.following[nextProps.handles.handle1];
+    let user2 = nextProps.following[nextProps.handles.handle2];
     let user1CompareLength = nextProps.following.user1Compare.length;
     let user2CompareLength = nextProps.following.user2Compare.length;
 
@@ -31,9 +31,10 @@ class FollowingLists extends Component {
   render() {
     const { store } = this.context;
     const state = store.getState();
+    const handles = state.handles
     return (
       <div>
-        <h1>{ state.screenNames.users[0] }</h1>
+        <h1>{ handles.handle1 }</h1>
         {
           state.following.user1Compare.map( ( f, index ) => {
             return <Friend
@@ -41,7 +42,7 @@ class FollowingLists extends Component {
                       friend={ f } />
           })
         }
-        <h1>{ state.screenNames.users[1] }</h1>
+        <h1>{ handles.handle2 }</h1>
         {
           state.following.user2Compare.map( ( f, index ) => {
             return <Friend
@@ -60,9 +61,9 @@ FollowingLists.contextTypes = {
 }
 
 function mapStateToProps( state ) {
-  const { screenNames, following } = state;
+  const { handles, following } = state;
   return {
-    screenNames,
+    handles,
     following
   }
 }

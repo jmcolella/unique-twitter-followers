@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Button from './Button';
 import '../assets/stylesheets/index.scss';
 
 const Index = () => {
@@ -14,13 +15,9 @@ const Index = () => {
           <p>Much exploration.</p>
         </div>
 
-        <Link to='/handles'>
-          <button
-            type='button'
-          >
-            GET STARTED
-          </button>
-        </Link>
+        <Button
+          link={ '/handles' }
+          title={ 'GET STARTED' } />
       </div>
     </div>
   )

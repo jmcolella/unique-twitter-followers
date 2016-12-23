@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from '../store/configure_store';
 import App from '../containers/App';
 import Index from '../components/Index';
-import AddScreenNames from '../containers/AddScreenNames';
+import AddHandles from '../components/AddHandles';
 import FollowingLists from '../containers/FollowingLists';
 
 const store = configureStore();
@@ -14,7 +14,7 @@ const routes = (
     <Router history={ hashHistory }>
       <Route path='/' component={ App }>
         <IndexRoute component={ Index } />
-        <Route path='/handles' component={ AddScreenNames } />
+        <Route path='/handles' component={ AddHandles } />
         <Route path="/following_lists" component={ FollowingLists } />
       </Route>
     </Router>
