@@ -55,13 +55,17 @@ button {
 .fifty-percent-width {
   width: 50%;
   margin: 0 auto;
+
+  @media only screen and ( max-width: 767px ) {
+    width: 100%;
+  }
 }
 
 /*  CONTAINERS */
 
 .container {
   display: block;
-  padding: 0px 15px;
+  // padding: 0px 15px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -87,7 +91,7 @@ button {
 
   .index-presentation-subtext {
     margin-bottom: 70px;
-    
+
     p {
       color: $white;
       font-size: 20px;
@@ -108,7 +112,7 @@ button {
 }
 
 .header-container {
-  margin-top: 130px;
+  margin-top: 110px;
 }
 
 .children-container {
@@ -126,6 +130,45 @@ button {
   display: block;
   width: 75%;
   margin: 0 auto;
+}
+
+.lists-container {
+  width: 75%;
+  margin: 0 auto;
+
+  @media only screen and ( max-width: 767px ) {
+    width: 100%;
+  }
+}
+
+.individual-list-container {
+  display: inline-block;
+  width: 49%;
+  vertical-align: top;
+
+  h1 {
+    @media only screen and ( max-width: 500px ) {
+      font-size: 18px;
+    }
+  }
+}
+
+.individual-friend-container {
+  p {
+    a {
+      color: $tertiary-color;
+      text-decoration: none;
+      border: none;
+      transition: border 0.5s ease;
+      @media only screen and ( max-width: 500px ) {
+        font-size: 14px;
+      }
+
+      &:hover {
+        border-bottom: 1px solid $tertiary-color;
+      }
+    }
+  }
 }
 
 /* BACKGROUNDS */
