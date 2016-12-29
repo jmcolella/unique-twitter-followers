@@ -2,7 +2,7 @@ import React from 'react';
 
 const Friend = ( props ) => {
   return (
-    <div>
+    <div className='individual-friend-container'>
       <p><a href={`https://www.twitter.com/${props.friend}`}>{ props.friend }</a></p>
     </div>
   )

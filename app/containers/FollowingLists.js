@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchFollowing, compareFollowing } from '../actions/following_actions';
+import Banner from '../components/Banner';
+import Header from '../components/Header';
 import Friend from '../components/Friend';
 
 class FollowingLists extends Component {
@@ -33,23 +35,40 @@ class FollowingLists extends Component {
     const state = store.getState();
     const handles = state.handles
     return (
-      <div>
-        <h1>{ handles.handle1 }</h1>
-        {
-          state.following.user1Compare.map( ( f, index ) => {
-            return <Friend
-                      key={ index }
-                      friend={ f } />
-          })
-        }
-        <h1>{ handles.handle2 }</h1>
-        {
-          state.following.user2Compare.map( ( f, index ) => {
-            return <Friend
-                      key={ index }
-                      friend={ f } />
-          })
-        }
+      <div className='container fade-in'>
+
+        <div className='fifty-percent-width'>
+          <Banner />
+        </div>
+
+        <Header
+          title={ 'Unique Friends' }
+          subTitle={ 'Explore the Twitter friends unique to each user' } />
+
+        <div className='lists-container'>
+          <div className='individual-list-container'>
+            <h1>{ handles.handle1 }</h1>
+            {
+              state.following.user1Compare.map( ( f, index ) => {
+                return <Friend
+                          key={ index }
+                          friend={ f } />
+              })
+            }
+          </div>
+
+          <div className='individual-list-container'>
+            <h1>{ handles.handle2 }</h1>
+            {
+              state.following.user2Compare.map( ( f, index ) => {
+                return <Friend
+                          key={ index }
+                          friend={ f } />
+              })
+            }
+          </div>
+        </div>
+
       </div>
     )
   }
