@@ -3,6 +3,7 @@ import followingHelpers from '../utils/following_helpers';
 
 
 export const following = ( state = {
+  loading: true,
   user1Compare: [],
   user2Compare: []
 }, action ) => {
@@ -18,7 +19,8 @@ export const following = ( state = {
     case Constants.COMPARE_FOLLOWING:
       return Object.assign( {}, state, {
         user1Compare: followingHelpers.compare( action.user1, action.user2 ),
-        user2Compare: followingHelpers.compare( action.user2, action.user1 )
+        user2Compare: followingHelpers.compare( action.user2, action.user1 ),
+        loading: false
       });
     default:
       return state
