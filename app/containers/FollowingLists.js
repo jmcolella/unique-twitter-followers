@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { fetchFollowing, compareFollowing } from '../actions/following_actions';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
-import Friend from '../components/Friend';
+import List from '../components/List';
+import Loading from '../components/Loading';
 
 class FollowingLists extends Component {
   componentDidMount() {
@@ -18,12 +19,12 @@ class FollowingLists extends Component {
   }
   componentWillReceiveProps( nextProps ) {
     const { store } = this.context;
-    let user1 = nextProps.following[nextProps.handles.handle1];
-    let user2 = nextProps.following[nextProps.handles.handle2];
-    let user1CompareLength = nextProps.following.user1Compare.length;
-    let user2CompareLength = nextProps.following.user2Compare.length;
+    const following = nextProps.following;
+    const user1 = following[nextProps.handles.handle1];
+    const user2 = following[nextProps.handles.handle2];
+    const loading = following.loading;
 
-    if ( user1.isFetching === false && user2.isFetching === false && user1CompareLength === 0 && user2CompareLength === 0 ) {
+    if ( loading && !user1.isFetching && !user2.isFetching ) {
       store.dispatch( compareFollowing( user1.following, user2.following ) );
     }
   }
@@ -33,7 +34,25 @@ class FollowingLists extends Component {
   render() {
     const { store } = this.context;
     const state = store.getState();
-    const handles = state.handles
+    const handles = state.handles;
+    const following = state.following;
+    let displayLists;
+
+    if ( following.loading ) {
+      displayLists =
+        <Loading />
+    } else {
+      displayLists =
+        <div className='lists-container'>
+          <List
+            handle={ handles.handle1 }
+            compareList={ following.user1Compare } />
+
+          <List
+            handle={ handles.handle2 }
+            compareList={ following.user2Compare } />
+        </div>
+    }
     return (
       <div className='container fade-in'>
 
@@ -45,29 +64,7 @@ class FollowingLists extends Component {
           title={ 'Unique Friends' }
           subTitle={ 'Explore the Twitter friends unique to each user' } />
 
-        <div className='lists-container'>
-          <div className='individual-list-container'>
-            <h1>{ handles.handle1 }</h1>
-            {
-              state.following.user1Compare.map( ( f, index ) => {
-                return <Friend
-                          key={ index }
-                          friend={ f } />
-              })
-            }
-          </div>
-
-          <div className='individual-list-container'>
-            <h1>{ handles.handle2 }</h1>
-            {
-              state.following.user2Compare.map( ( f, index ) => {
-                return <Friend
-                          key={ index }
-                          friend={ f } />
-              })
-            }
-          </div>
-        </div>
+        { displayLists }
 
       </div>
     )
