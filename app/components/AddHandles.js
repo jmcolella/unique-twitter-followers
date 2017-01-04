@@ -6,7 +6,7 @@ import Input from '../containers/Input';
 import Button from './Button';
 
 const AddHandles = () => (
-  <div className='container fifty-percent-width fade-in'>
+  <div className='container seventyfive-percent-width fade-in'>
 
     <Banner />
 
