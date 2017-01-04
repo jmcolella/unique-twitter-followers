@@ -35,7 +35,7 @@ export function fetchFollowing ( users ) {
   return dispatch => {
     users.map( u => {
       dispatch( requestFollowing( u ) );
-      return fetch( `http://localhost:3000/search?screen_name=${u}` )
+      return fetch( `https://uniqtweet-backend.herokuapp.com/search?screen_name=${u}` )
         .then( (response, data) => {
           response.json()
           .then( json => {
