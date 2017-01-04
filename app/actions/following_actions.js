@@ -16,13 +16,20 @@ export function receiveFollowing ( user, json ) {
   }
 };
 
+export function twitterError( user ) {
+  return {
+    type: Constants.TWITTER_ERROR,
+    user
+  }
+};
+
 export function compareFollowing( user1, user2 ) {
   return {
     type: Constants.COMPARE_FOLLOWING,
     user1,
     user2
   }
-}
+};
 
 export function fetchFollowing ( users ) {
   return dispatch => {
@@ -35,7 +42,7 @@ export function fetchFollowing ( users ) {
             dispatch( receiveFollowing( u, json ) )
           })
         .catch( ( error ) => {
-          debugger;
+          dispatch( twitterError( u ) )
         });
       })
     });
