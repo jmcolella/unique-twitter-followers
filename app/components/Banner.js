@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Banner = () => (
   <div className='banner'>
     <div className='banner-left'>
       <i className="fa fa-twitter" aria-hidden="true"></i>
-      <p>UNIQTWEET</p>
+      <p><Link to='/'>UNIQTWEET</Link></p>
    </div>
 
    <div className='banner-right'>

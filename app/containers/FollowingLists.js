@@ -5,6 +5,7 @@ import Banner from '../components/Banner';
 import Header from '../components/Header';
 import List from '../components/List';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 class FollowingLists extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class FollowingLists extends Component {
     const user2 = following[nextProps.handles.handle2];
     const loading = following.loading;
 
-    if ( loading && !user1.isFetching && !user2.isFetching ) {
+    if ( loading && !user1.isFetching && !user2.isFetching && !user1.error && !user2.error ) {
       store.dispatch( compareFollowing( user1.following, user2.following ) );
     }
   }
@@ -38,9 +39,14 @@ class FollowingLists extends Component {
     const following = state.following;
     let displayLists;
 
+    // need to handle error UI
+
     if ( following.loading ) {
       displayLists =
         <Loading />
+    } else if ( following[handles.handle1].error || following[handles.handle2].error ) {
+      displayLists =
+        <Error />
     } else {
       displayLists =
         <div className='lists-container'>

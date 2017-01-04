@@ -22,6 +22,11 @@ export const following = ( state = {
         user2Compare: followingHelpers.compare( action.user2, action.user1 ),
         loading: false
       });
+    case Constants.TWITTER_ERROR:
+      return Object.assign( {}, state, {
+         [action.user]: followingHelpers.error( state[action.user], action ),
+         loading: false
+      })
     default:
       return state
   }

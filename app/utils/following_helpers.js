@@ -31,10 +31,23 @@ function compareHelper ( first, second ) {
   return compareArr;
 }
 
+function errorHelper ( state = {}, action ) {
+  switch ( action.type ) {
+    case Constants.TWITTER_ERROR:
+      return Object.assign( {}, state, {
+        isFetching: false,
+        error: true
+      });
+    default:
+      return state
+  }
+};
+
 
 const followingHelpers = {
   fetching: fetchingHelper,
-  compare: compareHelper
+  compare: compareHelper,
+  error: errorHelper
 }
 
 export default followingHelpers;
