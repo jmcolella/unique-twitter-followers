@@ -62,7 +62,7 @@ class FollowingLists extends Component {
     return (
       <div className='container fade-in'>
 
-        <div className='fifty-percent-width'>
+        <div className='seventyfive-percent-width'>
           <Banner />
         </div>
 

@@ -61,6 +61,15 @@ button {
   }
 }
 
+.seventyfive-percent-width {
+  width: 75%;
+  margin: 0 auto;
+
+  @media only screen and ( max-width: 767px ) {
+    width: 100%;
+  }
+}
+
 /*  CONTAINERS */
 
 .container {
@@ -121,15 +130,23 @@ button {
 
 .inputs-container {
   display: block;
-  width: 75%;
+  width: 50%;
   margin: 0 auto;
   margin-bottom: 80px;
+
+  @media only screen and ( max-width: 767px ) {
+    width: 75%;
+  }
 }
 
 .button-container {
   display: block;
-  width: 75%;
+  width: 50%;
   margin: 0 auto;
+
+  @media only screen and ( max-width: 767px ) {
+    width: 75%;
+  }
 }
 
 .lists-container {
