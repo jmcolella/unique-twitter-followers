@@ -4,10 +4,11 @@ import * as Constants from '../../app/constants/following_constants';
 import * as Actions from '../../app/actions/following_actions';
 import { following } from '../../app/reducers/following_reducers';
 
-describe.only ( 'Redux Reducers::Following', () => {
+describe ( 'Redux Reducers::Following', () => {
 
   describe ( 'initial state', () => {
     const initialState = {
+      loading: true,
       user1Compare: [],
       user2Compare: []
     };
@@ -23,6 +24,7 @@ describe.only ( 'Redux Reducers::Following', () => {
   describe ( 'state after REQUEST_FOLLOWING action type', () => {
     const request = Actions.requestFollowing( 'jcolella48' );
     const requestReturnObj = {
+      loading: true,
       user1Compare: [],
       user2Compare: [],
       jcolella48: {
@@ -40,6 +42,7 @@ describe.only ( 'Redux Reducers::Following', () => {
     const followingArray = ['kitsplit', 'kylemooney']
     const receiveAction = Actions.receiveFollowing( 'jcolella48', { array: followingArray } );
     const receiveReturnObj = {
+      loading: true,
       user1Compare: [],
       user2Compare: [],
       jcolella48: {
@@ -105,12 +108,52 @@ describe.only ( 'Redux Reducers::Following', () => {
     const user2Array = ['sarahjeangilly', 'kylemooney'];
     const compareAction = Actions.compareFollowing( user1Array, user2Array );
     const compareReturnObj = {
+      loading: false,
       user1Compare: ['kitsplit'],
       user2Compare: ['sarahjeangilly']
     };
 
-    it ( 'returns state with compare arrays containing unique friends', () => {
+    it ( 'returns state with compare arrays containing unique friends and loading false', () => {
       expect( following( undefined, compareAction ) ).to.deep.equal( compareReturnObj );
+    });
+  });
+
+  describe ( 'state after TWITTER_ERROR action type', () => {
+    const state = {
+      loading: true,
+      user1Compare: [],
+      user2Compare: [],
+      jcolella48: {
+        isFetching: true,
+        following: []
+      }
+    };
+    const errorAction = Actions.twitterError( 'jcolella48' );
+    const errorReturnObj = {
+      loading: false,
+      user1Compare: [],
+      user2Compare: [],
+      jcolella48: {
+        error: true,
+        isFetching: false,
+        following: []
+      }
+    };
+
+    it ( 'returns state that equals fully expected object', () => {
+      expect( following( state, errorAction ) ).to.deep.equal( errorReturnObj );
+    });
+
+    it ( 'returns state with user object error property true', () => {
+      expect( following( state, errorAction )['jcolella48'].error ).to.deep.equal( errorReturnObj['jcolella48'].error );
+    });
+
+    it ( 'returns state with user object isFetching property false', () => {
+      expect( following( state, errorAction )['jcolella48'].isFetching ).to.deep.equal( errorReturnObj['jcolella48'].isFetching );
+    });
+
+    it ( 'returns state with loading property false', () => {
+      expect( following( state, errorAction ).loading ).to.deep.equal( errorReturnObj.loading );
     });
   });
 

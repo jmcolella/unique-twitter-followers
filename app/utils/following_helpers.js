@@ -31,15 +31,15 @@ function compareHelper ( first, second ) {
   return compareArr;
 }
 
-function errorHelper ( state = {}, action ) {
+function errorHelper ( userObj = {}, action ) {
   switch ( action.type ) {
     case Constants.TWITTER_ERROR:
-      return Object.assign( {}, state, {
+      return Object.assign( {}, userObj, {
         isFetching: false,
         error: true
       });
     default:
-      return state
+      return userObj
   }
 };
 

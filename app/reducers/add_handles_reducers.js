@@ -5,7 +5,7 @@ const initialState = {
   handle2: ''
 }
 
-const handles = ( state = {}, action ) => {
+const handles = ( state = initialState, action ) => {
   switch ( action.type ) {
     case Constants.ADD_HANDLE:
       if ( action.num === 1 ) {
