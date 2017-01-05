@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as Constants from '../../app/constants/following_constants';
 import followingHelpers from '../../app/utils/following_helpers';
 
-describe ( 'Redux Helpers::Following', () => {
+describe.only ( 'Redux Helpers::Following', () => {
 
   describe ( 'Fetching helper', () => {
 
@@ -78,6 +78,26 @@ describe ( 'Redux Helpers::Following', () => {
 
     it ( 'returns array with unique values for secondArr compared to firstArr', () => {
       expect( compareSecondToFirst ).to.deep.equal( ['kylemooney'] );
+    });
+  });
+
+  describe ( 'Error Helper', () => {
+    const userObj = {
+      isFetching: true,
+      following: []
+    };
+    const action = {
+      type: Constants.TWITTER_ERROR,
+      user: 'jcolella48'
+    };
+    const errorObj = followingHelpers.error( userObj, action );
+
+    it ( 'returns obj with isFetching property false', () => {
+      expect( errorObj.isFetching ).to.equal( false );
+    });
+
+    it ( 'returns obj with error property true', () => {
+      expect( errorObj.error ).to.equal( true );
     });
   });
 
