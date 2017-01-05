@@ -4,7 +4,7 @@ import * as Constants from '../../app/constants/following_constants';
 import * as Actions from '../../app/actions/following_actions';
 import { following } from '../../app/reducers/following_reducers';
 
-describe.only ( 'Redux Reducers::Following', () => {
+describe ( 'Redux Reducers::Following', () => {
 
   describe ( 'initial state', () => {
     const initialState = {

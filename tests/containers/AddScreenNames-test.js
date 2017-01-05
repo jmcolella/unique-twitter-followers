@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import AddScreenNames from '../../app/containers/AddScreenNames';
+import Input from '../../app/containers/Input';
 
 describe ( 'AddScreenNames container', () => {
 
   let addScreenNames;
 
   beforeEach( () => {
-    addScreenNames = shallow( <AddScreenNames /> );
+    addScreenNames = shallow( <Input /> );
   });
 
   it ( 'renders to the DOM', () => {
