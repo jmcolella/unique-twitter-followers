@@ -39,8 +39,6 @@ class FollowingLists extends Component {
     const following = state.following;
     let displayLists;
 
-    // need to handle error UI
-
     if ( following.loading ) {
       displayLists =
         <Loading />

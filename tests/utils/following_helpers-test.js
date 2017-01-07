@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import * as Constants from '../../app/constants/following_constants';
 import followingHelpers from '../../app/utils/following_helpers';
 
-describe.only ( 'Redux Helpers::Following', () => {
+describe ( 'Redux Helpers::Following', () => {
 
   describe ( 'Fetching helper', () => {
 
