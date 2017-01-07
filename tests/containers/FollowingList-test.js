@@ -1,7 +1,6 @@
-// NEED TO FIGURE OUT WHY CAN'T TEST FOR DOM NODES IN RETURN OF RENDER function
-
+// NEED TO FINISH THESE TESTS AFTER UPDATING FUNCTIONALITY WITH LOCAL STORAGE
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { expect } from 'chai';
 import { createStore } from 'redux'
 import configureStore from '../../app/store/configure_store';
@@ -9,16 +8,14 @@ import FollowingLists from '../../app/containers/FollowingLists';
 
 describe ( 'FollowingLists containers', () => {
 
-  let followingLists;
+  let followingLists,
+      store;
 
   beforeEach( () => {
-    const store = configureStore();
-    followingLists = shallow( <FollowingLists />, {
+    store = configureStore();
+    followingLists = mount( <FollowingLists />, {
       context: {
-        store: store
-      },
-      childContextTypes: {
-        store: React.PropTypes.object
+        store
       }
     });
   });
