@@ -6,14 +6,14 @@ const Button = ( props ) => (
     <button
       type='button'
     >
-      { props.title }
+      { props.children }
     </button>
   </Link>
 );
 
 Button.propTypes = {
   link: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired
+  children: React.PropTypes.string.isRequired
 }
 
 export default Button;

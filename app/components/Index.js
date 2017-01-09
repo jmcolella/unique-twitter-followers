@@ -15,9 +15,9 @@ const Index = () => {
           <p>Much exploration.</p>
         </div>
 
-        <Button
-          link={ '/handles' }
-          title={ 'GET STARTED' } />
+        <Button link={ '/handles' }>
+          GET STARTED
+        </Button>
       </div>
     </div>
   )

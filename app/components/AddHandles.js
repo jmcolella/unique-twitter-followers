@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import Banner from './Banner';
 import Header from './Header';
 import Input from '../containers/Input';
@@ -26,9 +25,9 @@ const AddHandles = () => (
       </div>
 
       <div className='button-container'>
-        <Button
-          link={ '/following_lists' }
-          title={ 'COMPARE' } />
+        <Button link={ '/following_lists' }>
+          COMPARE
+        </Button>
       </div>
 
     </div>
