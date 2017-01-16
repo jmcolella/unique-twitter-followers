@@ -1,3 +1,4 @@
+/* VARIABLES */
 $primary-color: #1da1f2; // Twitter main blue
 $secondary-color: #1B95E0; // light Twitter blue
 $tertiary-color: #8899a6; // Twitter grey
@@ -160,8 +161,10 @@ button {
 
 .individual-list-container {
   display: inline-block;
-  width: 49%;
+  width: 47%;
   vertical-align: top;
+  border: 1px solid $primary-color;
+  margin: 1%;
 
   h1 {
     @media only screen and ( max-width: 500px ) {
@@ -267,6 +270,13 @@ button {
       }
     }
   }
+}
+
+/* 'INFINITE' LOAD */
+
+.load-more-button {
+  max-width: 20rem;
+  margin-top: 40px;
 }
 
 /* ANIMATIONS */

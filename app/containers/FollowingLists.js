@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Infinite from 'react-infinite';
 import { fetchFollowing, compareFollowing } from '../actions/following_actions';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
@@ -8,6 +9,19 @@ import Loading from '../components/Loading';
 import Error from '../components/Error';
 
 class FollowingLists extends Component {
+  constructor( props ) {
+    super( props );
+
+    this.state = {
+      user1Compare: [],
+      user2Compare: [],
+      user1Index: 20,
+      user2Index: 20,
+      isLoading: false
+    };
+
+    this.handleInfiniteLoad = this.handleInfiniteLoad.bind( this );
+  }
   componentDidMount() {
     const { store, dispatch } = this.context;
     const handles = store.getState().handles;
@@ -28,16 +42,47 @@ class FollowingLists extends Component {
     if ( loading && !user1.isFetching && !user2.isFetching && !user1.error && !user2.error ) {
       store.dispatch( compareFollowing( user1.following, user2.following ) );
     }
+
+    if ( !loading ) {
+      this.setState({
+        user1Compare: following.user1Compare.slice( 0, 20 ),
+        user2Compare: following.user2Compare.slice( 0, 20 )
+      });
+    }
   }
   componentWillUnmount() {
     this.unsubscribe();
+  }
+  handleInfiniteLoad() {
+    const { store } = this.context;
+    const state = store.getState();
+    const following = state.following;
+
+    this.setState({
+      isLoading: true
+    });
+
+    if ( (this.state.user1Index <  following.user1Compare.length - 1) || (this.state.user2Index < following.user2Compare.length - 1) ) {
+      this.setState({
+        user1Compare: this.state.user1Compare.concat( following.user1Compare.slice( this.state.user1Index, this.state.user1Index + 20 ) ),
+        user1Index: this.state.user1Index + 20,
+        user2Compare: this.state.user2Compare.concat( following.user2Compare.slice( this.state.user2Index, this.state.user2Index + 20 ) ),
+        user2Index: this.state.user2Index + 20,
+        isLoading: false
+      });
+    } else {
+      this.setState({
+        isLoading: false
+      });
+    };
   }
   render() {
     const { store } = this.context;
     const state = store.getState();
     const handles = state.handles;
     const following = state.following;
-    let displayLists;
+    let displayLists,
+        infiniteLoading;
 
     if ( following.loading ) {
       displayLists =
@@ -50,12 +95,22 @@ class FollowingLists extends Component {
         <div className='lists-container'>
           <List
             handle={ handles.handle1 }
-            compareList={ following.user1Compare } />
+            compareList={ this.state.user1Compare } />
 
           <List
             handle={ handles.handle2 }
-            compareList={ following.user2Compare } />
+            compareList={ this.state.user2Compare } />
         </div>
+    }
+
+    if ( !this.state.isLoading && (this.state.user1Compare.length !== following.user1Compare.length || this.state.user2Compare.length !== following.user2Compare.length) ) {
+      infiniteLoading =
+        <button
+          className='load-more-button'
+          onClick={ this.handleInfiniteLoad }
+        >
+          Load More
+        </button>
     }
     return (
       <div className='container fade-in'>
@@ -69,6 +124,8 @@ class FollowingLists extends Component {
           subTitle={ 'Explore the Twitter friends unique to each user' } />
 
         { displayLists }
+
+        { infiniteLoading }
 
       </div>
     )

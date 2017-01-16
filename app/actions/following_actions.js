@@ -42,6 +42,7 @@ export function fetchFollowing ( users ) {
             dispatch( receiveFollowing( u, json ) )
           })
         .catch( ( error ) => {
+          debugger;
           dispatch( twitterError( u ) )
         });
       })
