@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import * as Constants from '../constants/following_constants';
+import Promise from 'bluebird';
 
 export function requestFollowing ( user ) {
   return {
@@ -33,19 +34,18 @@ export function compareFollowing( user1, user2 ) {
 
 export function fetchFollowing ( users ) {
   return dispatch => {
-    users.map( u => {
+    return Promise.all( users.map( ( u ) => {
       dispatch( requestFollowing( u ) );
       return fetch( `https://uniqtweet-backend.herokuapp.com/search?screen_name=${u}` )
-        .then( (response, data) => {
-          response.json()
-          .then( json => {
-            dispatch( receiveFollowing( u, json ) )
-          })
+      .then( (response, data) => {
+        return response.json()
+        .then( json => {
+          return dispatch( receiveFollowing( u, json ) );
+        })
         .catch( ( error ) => {
-          debugger;
-          dispatch( twitterError( u ) )
+          return dispatch( twitterError( u ) );
         });
-      })
-    });
+      });
+    }))
   }
 }
