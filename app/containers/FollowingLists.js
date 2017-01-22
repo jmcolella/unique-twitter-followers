@@ -26,7 +26,13 @@ class FollowingLists extends Component {
     const { store, dispatch } = this.context;
     const handles = store.getState().handles;
 
-    store.dispatch( fetchFollowing( [ handles.handle1, handles.handle2 ] ) );
+    store.dispatch( fetchFollowing( [handles.handle1, handles.handle2] ) )
+    .bind( this )
+    .then( ( res ) => {
+      if ( res[0].type != 'TWITTER_ERROR' &&  res[1].type != 'TWITTER_ERROR' ) {
+        this.context.store.dispatch( store.dispatch( compareFollowing( res[0].followingList, res[1].followingList ) ) );
+      }
+    });
 
     this.unsubscribe = store.subscribe( () => {
       this.forceUpdate;
@@ -35,13 +41,7 @@ class FollowingLists extends Component {
   componentWillReceiveProps( nextProps ) {
     const { store } = this.context;
     const following = nextProps.following;
-    const user1 = following[nextProps.handles.handle1];
-    const user2 = following[nextProps.handles.handle2];
     const loading = following.loading;
-
-    if ( loading && !user1.isFetching && !user2.isFetching && !user1.error && !user2.error ) {
-      store.dispatch( compareFollowing( user1.following, user2.following ) );
-    }
 
     if ( !loading ) {
       this.setState({
