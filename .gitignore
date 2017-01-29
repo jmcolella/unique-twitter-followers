@@ -1,3 +1,9 @@
 node_modules/
 dist/*.js
+dist/*.js.*
+dist/*.eot
+dist/*.svg
+dist/*.woff2
+dist/*.ttf
+dist/*.woff
 *.log
