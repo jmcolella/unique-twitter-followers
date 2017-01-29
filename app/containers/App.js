@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../assets/stylesheets/application.scss';
-import '../assets/font-awesome/scss/font-awesome.scss';
 
 class App extends Component {
   render() {
