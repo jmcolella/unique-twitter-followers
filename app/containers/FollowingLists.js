@@ -26,7 +26,7 @@ class FollowingLists extends Component {
     const { store, dispatch } = this.context;
     const handles = store.getState().handles;
 
-    store.dispatch( fetchFollowing( [handles.handle1, handles.handle2] ) )
+    let p = store.dispatch( fetchFollowing( [handles.handle1, handles.handle2] ) )
     .bind( this )
     .then( ( res ) => {
       if ( res[0].type != 'TWITTER_ERROR' &&  res[1].type != 'TWITTER_ERROR' ) {

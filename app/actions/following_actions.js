@@ -40,10 +40,10 @@ export function fetchFollowing ( users ) {
       .then( (response, data) => {
         return response.json()
         .then( json => {
-          return dispatch( receiveFollowing( u, json ) );
+          return Promise.resolve( dispatch( receiveFollowing( u, json ) ) );
         })
         .catch( ( error ) => {
-          return dispatch( twitterError( u ) );
+          return Promise.resolve( dispatch( twitterError( u ) ) );
         });
       });
     }))
